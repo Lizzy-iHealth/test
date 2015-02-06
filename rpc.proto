@@ -1,0 +1,62 @@
+
+message Message {
+  extensions 100 to max;
+}
+
+message Connect {
+  extend Message {
+    optional Connect connect = 100;
+  }
+  optional int64 latest_id = 1 [ default = 0 ];
+}
+
+message Disconnect {
+  extend Message {
+    optional Disconnect disconnect = 101;
+  }
+}
+
+message KardInfo {
+  extend Message {
+    optional KardInfo kard_info = 102;
+  }
+  optional Kard card = 1;
+}
+
+message GetKards {
+  extend Message {
+    optional GetKards get_kards = 103;
+  }
+  optional int64 before = 1;
+  optional int64 after = 2;
+}
+
+message Kard {
+  optional Image background = 1;
+  optional Text text = 2;
+  optional Audio voice = 3;
+  optional Drawing doodle = 4;
+
+  optional int64 id = 5;
+  optional int64 create_at = 6;
+}
+
+message Image {
+  optional string url = 1;
+  optional string keywords = 2;
+
+  optional bytes content = 3;
+  optional string format = 4;
+  optional int64 id = 5;
+}
+
+message Text {
+  optional string content = 1;
+}
+
+message Audio {
+  optional bytes data = 1;
+}
+
+message Drawing {
+}
